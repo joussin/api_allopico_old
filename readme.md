@@ -112,7 +112,7 @@ erDiagram
             int id
 	     int command_id  
 		 datetime date
-		 enum status
+		 enum status "WAITING_PAID, PAID, WAITING_DELIVERY, CONFIRMED_DELIVERY, DELIVERY_FINISH, TERMINATED"
 		 enum provider   
 		 json provider_extra_data
     }
