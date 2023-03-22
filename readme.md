@@ -46,7 +46,7 @@ erDiagram
     UserLocation {
         int id
         int user_id
-        float coords
+        float[] coords
     }
     
     User {
