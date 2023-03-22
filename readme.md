@@ -26,16 +26,16 @@
 
 ```mermaid  
 erDiagram
-    User ||--o{ UserLocation : hasMany
-    User ||--o{ Cart : hasMany
+    User ||--|{ UserLocation : hasMany
+    User ||--|{ Cart : hasMany
     
-    Cart ||--o{ Product : hasMany
-    Cart ||--o{ Command : hasOne
+    Cart ||--|{ Product : hasMany
+    Cart ||--|| Command : hasOne
     
-    Command ||--o{ Payment : hasOne
-    Command ||--o{ Delivery : hasOne
+    Command ||--|| Payment : hasOne
+    Command ||--|| Delivery : hasOne
     
-    Payment ||--o{ PaymentNotification : hasOne
+    Payment ||--|| PaymentNotification : hasOne
     
    
     
