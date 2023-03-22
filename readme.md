@@ -37,8 +37,8 @@ erDiagram
     
     Payment ||--o{ PaymentNotification : hasOne
     
-    Command ||--o{ PERSON-TEST : has
-        PERSON-TEST ||--o{ PaymentNotification : hasOne
+    Command ||--o{ Person : has
+        Person ||--o{ PaymentNotification : hasOne
     
     City {
         int id
@@ -105,15 +105,9 @@ erDiagram
 	     datetime date_finish
 	}
 	
- PERSON {
-        string driversLicense PK "The license #"
-        string(99) firstName "Only 99 characters are allowed"
-        string lastName
-        string phone UK
-        int age
-    }
+ 
     
-     PERSON-TEST {
+     Person {
         string driversLicense PK, FK "The license #"
         string(99) firstName "Only 99 characters are allowed"
             int id
