@@ -74,7 +74,7 @@ erDiagram
     Command {
 	     int id
 	     int cart_id  
-		 string status OK, KO
+		 string status OK KO
 		 datetime date
 	}
     
