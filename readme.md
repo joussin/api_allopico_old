@@ -74,7 +74,7 @@ erDiagram
     Command {
 	     int id
 	     int cart_id  
-		 enum status 
+		 string status OK, KO
 		 datetime date
 	}
     
