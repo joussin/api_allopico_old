@@ -5,39 +5,56 @@
 
 ## Rest Resources :
 
-**City** : Represent application list cities deserved for delivery (name, coords, ...)
+**City** : Represent application list cities deserved for delivery  
 
-**User** : auth, profile (username, email, password, address etc)
+**User** : User auth, profile 
 
-**Product** : Represent application list product (name , desc, price ...)
+**UserLocation** : user gps location 
 
-**Cart** : Represent temp user list product (product_ids[] , date)
+**Product** : Represent application list product 
 
-**Command** : Represent user list product validated before payment (Cart_id, date, status : WAITING_PAID, PAID, WAITING_DELIVERY, CONFIRMED_DELIVERY, DELIVERY_FINISH, TERMINATED)
+**Cart** : Represent temp user list product  
 
-**Payment** : Represent a command payment (command_id, date, amount , provider (stripe, payplug), provider_extra_data ...)
+**Command** : Represent user list product validated before payment
 
-**PaymentNotification** : Represent the Payment provider (stripe, payplug etc) payment notification response
+**Payment** : Represent a command payment 
 
-**Delivery** : Represent Command Delivery (USER_ADDRESS, USER_ID, DATE_CREATION, DATE_ESTIMATED_DELIVERY, COMMAND_ID, DATE_FINISH)
+**PaymentNotification** : Represent the Payment provider notification
+
+**Delivery** : Represent Command Delivery 
 
 
 ```mermaid  
 erDiagram
+    User ||--o{ UserLocation : hasMany
     User ||--o{ Cart : hasMany
+    
     Cart ||--o{ Product : hasMany
     Cart ||--o{ Command : hasOne
+    
     Command ||--o{ Payment : hasOne
-    Payment ||--o{ PaymentNotification : hasOne
     Command ||--o{ Delivery : hasOne
     
+    Payment ||--o{ PaymentNotification : hasOne
+    
     City {
-        string id
+        int id
+        string name
+        float[] coords
+    }
+        
+    UserLocation {
+        int id
+        int user_id
+        float[] coords
     }
     
     User {
-        string id
+        int id
         string username
+        string email
+        string password
+        string address
     }
     
     
@@ -51,29 +68,38 @@ erDiagram
     Cart {
 	     int id
 	     int user_id
+	     datetime date
 	}
     
     Command {
 	     int id
 	     int cart_id  
-		string status
+		 enum status WAITING_PAID, PAID, WAITING_DELIVERY, CONFIRMED_DELIVERY, DELIVERY_FINISH, TERMINATED
+		 datetime date
 	}
     
     Payment {
 	     int id
 	     int command_id  
-		string status
+		 datetime date
+		 enum status  WAITING, FAILED, SUCCESS
+		 enum provider  STRIPE, PAYPLUG
+		 json provider_extra_data
 	}
     
     PaymentNotification {
 	     int id
 	     int payment_id
+		 enum status  WAITING, FAILED, SUCCESS
 	}
 	    
     Delivery {
 	     int id
 	     int command_id  
-	     string status
+	     
+	     datetime date_creation
+	     datetime date_estimated_delivery
+	     datetime date_finish
 	}
 ```  
 
@@ -95,7 +121,7 @@ erDiagram
 
 #### **Api crud des resources suivantes** : 
 
-> City - Product - Cart - Command - Payment - PaymentNotification - Delivery
+> City - UserLocation - Product - Cart - Command - Payment - PaymentNotification - Delivery
 
 > list - create - show - update - delete - listFiltered
 
@@ -125,11 +151,13 @@ sequenceDiagram
 
 ClientApplication->>+User: Login/Register
 
-User->>+Cities: Set my Location & check my location availability
+User->>+UserLocation: Set my Location
 
-User->>+Products: list all Products
+User->>+City: check my location availability
 
-Products->>+User: Products[]
+User->>+Product: list all Products
+
+Product->>+User: Product[]
 ```
 
   
