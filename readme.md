@@ -5,15 +5,21 @@
 
 ## Rest Resources :
 
-#### City : Represent application list cities deserved for delivery (name, coords, ...)
+**City** : Represent application list cities deserved for delivery (name, coords, ...)
 
-#### User : auth, profile (username, email, password, address etc)
-#### Product : Represent application list product (name , desc, price ...)
-#### Cart : Represent temp user list product (product_ids[] , date)
-#### Command : Represent user list product validated before payment (Cart_id, date, status) status : (waiting_paid, paid, waiting_delivery, confirmed_delivery, delivery_finish, terminated)
-#### Payment : Represent a command payment (command_id, date, amount , provider (stripe, payplug), provider_extra_data ...)
-#### PaymentNotification : Represent the Payment provider (stripe, payplug etc) payment notification response
-#### Delivery : Represent Command Delivery (user_address, user_id, date_creation, date_estimated_delivery, command_id, date_finish)
+**User** : auth, profile (username, email, password, address etc)
+
+**Product** : Represent application list product (name , desc, price ...)
+
+**Cart** : Represent temp user list product (product_ids[] , date)
+
+**Command** : Represent user list product validated before payment (Cart_id, date, status : WAITING_PAID, PAID, WAITING_DELIVERY, CONFIRMED_DELIVERY, DELIVERY_FINISH, TERMINATED)
+
+**Payment** : Represent a command payment (command_id, date, amount , provider (stripe, payplug), provider_extra_data ...)
+
+**PaymentNotification** : Represent the Payment provider (stripe, payplug etc) payment notification response
+
+**Delivery** : Represent Command Delivery (USER_ADDRESS, USER_ID, DATE_CREATION, DATE_ESTIMATED_DELIVERY, COMMAND_ID, DATE_FINISH)
 
 
 ```mermaid  
@@ -91,6 +97,8 @@ erDiagram
 
 > City - Product - Cart - Command - Payment - PaymentNotification - Delivery
 
+> list - create - show - update - delete - listFiltered
+
 #### **Api resource User** :
 
 > register() - login() - logout() - profile()
@@ -113,29 +121,15 @@ User : ClientApplication user
   
 
 ```mermaid
-
-  
-
 sequenceDiagram
-
-  
 
 ClientApplication->>+User: Login/Register
 
-  
-
 User->>+Cities: Set my Location & check my location availability
-
-  
 
 User->>+Products: list all Products
 
-  
-
 Products->>+User: Products[]
-
-  
-
 ```
 
   
@@ -144,63 +138,32 @@ Products->>+User: Products[]
   
 
 ```mermaid
-
-  
-
 sequenceDiagram
-
-  
 
 User->>+Cart: Add Product to cart
 
-  
-
 User->>+Command: Validate Cart & create a Command
-
-  
 
 User->>+Payment: Validate Command & Choose payment provider
 
-  
-
 User->>+Payment: Show payment provider form (initPayment)
-
-  
 
 User->>+Payment: Validate payment (finalizePayment)
 
-  
-
 Payment->>+User: Payment notification (confirmPaymentNotification)
-
-  
 
 User->>+Command: Status Command as Paid in DB
 
-  
-
 User->>+Command: Status Command as waiting_delivery
-
-  
 
 User->>+Payment: Confirm payment in DB (confirmPayment)
 
-  
-
 ```
-
-  
-  
-  
 
 ### Flow Delivery 
 
-  
 
 ```mermaid
-
-  
-
 sequenceDiagram
 
   
@@ -231,14 +194,8 @@ AdminApplication : livreur app / private app
 Admin : AdminApplication user / livreur
 
 
-### Flow Command 
-
-
-
+### Flow Command
 ```mermaid
-
-  
-
 sequenceDiagram
 
   
@@ -263,9 +220,6 @@ Admin->>+Delivery: Delivery date_estimated_delivery = now + 30min
 
 
 ### Flow Delivery 
-
-  
-
 ```mermaid
 sequenceDiagram
 
