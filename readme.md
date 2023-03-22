@@ -108,12 +108,12 @@ erDiagram
  
     
      Person {
-        string driversLicense PK, FK "The license #"
-        string(99) firstName "Only 99 characters are allowed"
+        string ex1 PK, FK "The license #"
+        string(99) ex2 "Only 99 characters are allowed"
             int id
 	     int command_id  
 		 datetime date
-		 enum status  
+		 enum status OK, KO "status"
 		 enum provider   
 		 json provider_extra_data
     }
