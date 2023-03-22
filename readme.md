@@ -75,21 +75,21 @@ erDiagram
     Cart {
 	     int id
 	     int user_id
-	     datetime date
+	     datetime date "2023-03-25 12:30:00, YYYY-MM-DD H:i:s"
 	}
     
     Command {
 	     int id
 	     int cart_id
 	enum status "WAITING_PAID, PAID, WAITING_DELIVERY, CONFIRMED_DELIVERY, DELIVERY_FINISH, TERMINATED"
-	datetime date
+	datetime date "2023-03-25 12:30:00"
 	}
     
      
      Payment {
             int id
 	     int command_id  
-		 datetime date
+		 datetime date "2023-03-25 12:30:00"
 		 enum status "WAITING, FAILED, SUCCESS"
 		 enum provider "STRIPE, PAYPLUG, PAYPAL"
 		 json provider_extra_data "{stripe_id: 1, stripe_user_id: 1, date: 2022-01-01, STATUS: OK}"
@@ -105,9 +105,9 @@ erDiagram
 	     int id
 	     int command_id  
 	     
-	     datetime date_creation
-	     datetime date_estimated_delivery
-	     datetime date_finish
+	     datetime date_creation "2023-03-25 12:30:00"
+	     datetime date_estimated_delivery "2023-03-25 12:45:00"
+	     datetime date_finish "2023-03-25 12:47:00"
 	}
 	
  
