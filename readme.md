@@ -158,16 +158,11 @@ class PaymentNotification{
 
   
 
-## Schema diagram :
+# Schema diagram : User side
 
 ClientApplication : user app / public app
 
 User : ClientApplication user
-
-AdminApplication : livreur app / private app
-
-Admin : AdminApplication user / livreur
-
 
 ### Flow Register/login, Gps location, list Products
 
@@ -201,8 +196,7 @@ Products->>+User: Products[]
 
   
 
-### Flow Command and payment : User Side
-
+### Flow Command and payment 
   
 
 ```mermaid
@@ -253,42 +247,9 @@ User->>+Payment: Confirm payment in DB (confirmPayment)
 
   
   
-
-### Flow Command : Admin Side
-
   
 
-```mermaid
-
-  
-
-sequenceDiagram
-
-  
-
-Admin->>+Command: List command to ship
-
-  
-
-Admin->>+Shipping: get Command address
-
-  
-
-Admin->>+Command: validate Command shipping (Command confirmed_shipping)
-
-  
-
-Admin->>+Shipping: Shipping date_estimated_shipping = now + 30min
-
-  
-
-```
-
-  
-  
-  
-
-### Flow Shipping : User side
+### Flow Shipping 
 
   
 
@@ -318,10 +279,46 @@ User->>+Command: User validate shipping (Command terminated)
 
 ```
 
-  
+<p style="color:red">
+# Schema diagram : Admin side
+
+AdminApplication : livreur app / private app
+
+Admin : AdminApplication user / livreur
+
+
+### Flow Command 
+
+
+
+```mermaid
+
   
 
-### Flow Shipping : Admin Side
+sequenceDiagram
+
+  
+
+Admin->>+Command: List command to ship
+
+  
+
+Admin->>+Shipping: get Command address
+
+  
+
+Admin->>+Command: validate Command shipping (Command confirmed_shipping)
+
+  
+
+Admin->>+Shipping: Shipping date_estimated_shipping = now + 30min
+
+  
+
+```
+
+
+### Flow Shipping 
 
   
 
@@ -343,3 +340,5 @@ AdminApplication->>+Command: Command shipping_finish
   
 
 ```
+
+</p>
