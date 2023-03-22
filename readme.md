@@ -37,6 +37,8 @@ erDiagram
     
     Payment ||--o{ PaymentNotification : hasOne
     
+    Command ||--o{ PERSON-TEST : has
+    
     City {
         int id
         string name
