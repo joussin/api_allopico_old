@@ -38,6 +38,7 @@ erDiagram
     Payment ||--o{ PaymentNotification : hasOne
     
     Command ||--o{ PERSON-TEST : has
+        PERSON-TEST ||--o{ PaymentNotification : hasOne
     
     City {
         int id
