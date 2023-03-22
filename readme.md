@@ -5,40 +5,35 @@
 
 ## Rest Resources :
 
+#### City : Represent application list cities deserved for delivery (name, coords, ...)
+
 #### User : auth, profile (username, email, password, address etc)
-#### City : Represent application list cities deserved to shipping (name, coords, ...)
+#### Product : Represent application list product (name , desc, price ...)
+#### Cart : Represent temp user list product (product_ids[] , date)
+#### Command : Represent user list product validated before payment (Cart_id, date, status) status : (waiting_paid, paid, waiting_delivery, confirmed_delivery, delivery_finish, terminated)
+#### Payment : Represent a command payment (command_id, date, amount , provider (stripe, payplug), provider_extra_data ...)
+#### PaymentNotification : Represent the Payment provider (stripe, payplug etc) payment notification response
+#### Delivery : Represent Command Delivery (user_address, user_id, date_creation, date_estimated_delivery, command_id, date_finish)
+
 
 ```mermaid  
-erDiagram  
-
-    User {
-        string id
-        string username
-    }
+erDiagram
+    User ||--o{ Cart : hasMany
+    Cart ||--o{ Product : hasMany
+    Cart ||--o{ Command : hasOne
+    Command ||--o{ Payment : hasOne
+    Payment ||--o{ PaymentNotification : hasOne
+    Command ||--o{ Delivery : hasOne
     
     City {
         string id
     }
     
-```
-
----
-
-#### Product : Represent application list product (name , desc, price ...)
-#### Cart : Represent temp user list product (product_ids[] , date)
-#### Command : Represent user list product validated before payment (Cart_id, date, status) status : (waiting_paid, paid, waiting_shipping, confirmed_shipping, shipping_finish, terminated)
-#### Payment : Represent a command payment (command_id, date, amount , provider (stripe, payplug), provider_extra_data ...)
-#### PaymentNotification : Represent the Payment provider (stripe, payplug etc) payment notification response
-#### Shipping : Represent Command shipping (user_address, user_id, date_creation, date_estimated_shipping, command_id, date_finish)
-
-
-```mermaid  
-erDiagram
-    Cart ||--o{ Product : hasMany
-    Cart ||--o{ Command : hasOne
-    Cart ||--o{ Payment : hasOne
-    Payment ||--o{ PaymentNotification : hasOne
-    Command ||--o{ Shipping : hasOne
+    User {
+        string id
+        string username
+    }
+    
     
     Product {
 		int id  
@@ -48,7 +43,8 @@ erDiagram
 	}
     
     Cart {
-	     string id
+	     int id
+	     int user_id
 	}
     
     Command {
@@ -68,8 +64,9 @@ erDiagram
 	     int payment_id
 	}
 	    
-    Shipping {
+    Delivery {
 	     int id
+	     int command_id  
 	     string status
 	}
 ```  
@@ -92,7 +89,7 @@ erDiagram
 
 #### **Api crud des resources suivantes** : 
 
-> City - Product - Cart - Command - Payment - PaymentNotification - Shipping
+> City - Product - Cart - Command - Payment - PaymentNotification - Delivery
 
 #### **Api resource User** :
 
@@ -182,7 +179,7 @@ User->>+Command: Status Command as Paid in DB
 
   
 
-User->>+Command: Status Command as waiting_shipping
+User->>+Command: Status Command as waiting_delivery
 
   
 
@@ -196,7 +193,7 @@ User->>+Payment: Confirm payment in DB (confirmPayment)
   
   
 
-### Flow Shipping 
+### Flow Delivery 
 
   
 
@@ -212,7 +209,7 @@ User->>+Command: Check Commands status
 
   
 
-User->>+Shipping: Check Shippings date_estimated_shipping
+User->>+Delivery: Check Delivery date_estimated_delivery
 
   
 
@@ -220,7 +217,7 @@ User->>+Command: Commands status
 
   
 
-User->>+Command: User validate shipping (Command terminated)
+User->>+Command: User validate Delivery (Command terminated)
 
   
 
@@ -250,22 +247,22 @@ Admin->>+Command: List command to ship
 
   
 
-Admin->>+Shipping: get Command address
+Admin->>+Delivery: get Command address
 
   
 
-Admin->>+Command: validate Command shipping (Command confirmed_shipping)
+Admin->>+Command: validate Command Delivery (Command confirmed_delivery)
 
   
 
-Admin->>+Shipping: Shipping date_estimated_shipping = now + 30min
+Admin->>+Delivery: Delivery date_estimated_delivery = now + 30min
 
   
 
 ```
 
 
-### Flow Shipping 
+### Flow Delivery 
 
   
 
@@ -278,11 +275,11 @@ Admin->>+AdminApplication: Livreur validate ship.
 
   
 
-AdminApplication->>+Shipping: Shippings date_finish=now
+AdminApplication->>+Delivery: Delivery date_finish=now
 
   
 
-AdminApplication->>+Command: Command shipping_finish
+AdminApplication->>+Command: Command delivery_finish
 
   
 
