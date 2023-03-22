@@ -113,7 +113,7 @@ erDiagram
             int id
 	     int command_id  
 		 datetime date
-		 enum status OK, KO "status"
+		 enum status
 		 enum provider   
 		 json provider_extra_data
     }
