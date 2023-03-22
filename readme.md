@@ -102,9 +102,17 @@ erDiagram
 	     datetime date_finish
 	}
 	
-	   CommandTest {
-	     string desc OK "KO"
-	}
+ PERSON {
+        string driversLicense PK "The license #"
+        string(99) firstName "Only 99 characters are allowed"
+        string lastName
+        string phone UK
+        int age
+    }
+    NAMED-DRIVER {
+        string carRegistrationNumber PK, FK
+        string driverLicence PK, FK
+    }
 ```  
 
 
