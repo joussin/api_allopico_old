@@ -72,10 +72,10 @@ erDiagram
 	}
     
     Command {
-	     int id
-	     int cart_id  
-		 string status OK KO
-		 datetime date
+	     string id OO "KO"
+	     string cart_id KK "KO"
+	string status OK "KO"
+	datetime date
 	}
     
     Payment {
