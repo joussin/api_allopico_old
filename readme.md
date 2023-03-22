@@ -43,13 +43,15 @@ erDiagram
     City {
         int id
         string name
-        float[] coords
+        float[] coords "[lat: 48.862725, long: 2.287592]"
+	string lat_long "48.862725,2.287592"
     }
         
     UserLocation {
         int id
         int user_id
-        float[] coords
+        float[] coords "[lat: 48.862725, long: 2.287592]"
+	string lat_long "48.862725,2.287592"
     }
     
     User {
@@ -87,8 +89,8 @@ erDiagram
 	     int command_id  
 		 datetime date
 		 enum status "WAITING, FAILED, SUCCESS"
-		 enum provider   
-		 json provider_extra_data
+		 enum provider "STRIPE, PAYPLUG, PAYPAL"
+		 json provider_extra_data "{stripe_id: 1, stripe_user_id: 1, date: 2022-01-01, STATUS: OK}"
     }
     
     PaymentNotification {
