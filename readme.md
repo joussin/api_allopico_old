@@ -34,11 +34,11 @@ erDiagram
     
     Command ||--|| Payment : hasOne
     Command ||--|| Delivery : hasOne
+
     Command ||--|| City : hasOne
     
     Payment ||--|| PaymentNotification : hasOne
-    
-   
+
     
     City {
         int id
