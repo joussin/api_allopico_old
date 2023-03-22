@@ -40,7 +40,7 @@ erDiagram
     City {
         int id
         string name
-        float coords
+        float[] coords
     }
         
     UserLocation {
