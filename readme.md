@@ -280,7 +280,7 @@ User->>+Command: User validate shipping (Command terminated)
 ```
 
 
-# Schema diagram : Admin side
+# <span style="color:darkred">Schema diagram : Admin side</span>
 
 AdminApplication : livreur app / private app
 
