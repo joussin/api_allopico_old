@@ -103,7 +103,7 @@ erDiagram
 	}
 	
 	   CommandTest {
-	     string desc "OK" "KO"
+	     string desc OK "KO"
 	}
 ```  
 
