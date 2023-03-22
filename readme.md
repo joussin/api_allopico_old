@@ -39,7 +39,7 @@
 
 ## Rest Resources Models:
 
-  
+#### Users : auth, profile
 
 ```mermaid
 classDiagram
@@ -67,8 +67,9 @@ class User{
 
 }
 ```
-  
-  
+
+#### Carts : Represent temp user list product (product_ids[] , date)
+
 ```mermaid
 classDiagram
 class Cart{
@@ -139,50 +140,21 @@ class PaymentNotification{
 
 - bdd:
 
-- dev: dev_api_allopico
+  - dev: dev_api_allopico
 
-  
-  
 
-- Description :
+#### **Api rest crud des resources** : 
 
->  **Api rest crud des resources** :
+> Cities - Products - Carts - Commands - Payments - PaymentNotifications - Shippings
 
-> Cities
+#### **Api User** :
 
-> Products
+> register() - login() - logout() - profile()
 
-> Carts
 
-> Commands
+#### **Api Payment** :
 
-> Payments
-
-> PaymentNotifications
-
-> Shippings
-
->  **Api User** :
-
-> register
-
-> login
-
-> logout
-
-> profile
-
->  **Api Payment** :
-
-> initPayment
-
-> finalizePayment
-
-> 3DS
-
-> confirmPaymentNotification : IPN
-
-> confirmPayment
+> initPayment() - finalizePayment() - 3DS() - confirmPaymentNotification() (IPN) - confirmPayment()
 
   
 
@@ -190,19 +162,12 @@ class PaymentNotification{
 
 ClientApplication : user app / public app
 
-  
-
 User : ClientApplication user
-
-  
 
 AdminApplication : livreur app / private app
 
-  
-
 Admin : AdminApplication user / livreur
 
-  
 
 ### Flow Register/login, Gps location, list Products
 
