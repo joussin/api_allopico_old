@@ -3,67 +3,50 @@
 
 # Documentation Api-Allopico
 
-## Resources Rest :
+## Rest Resources :
 
-- Users : auth, profile (username, email, password, address etc)
-
-  
-
-- Cities : Represent application list cities deserved to shipping (name, coords, ...)
-
-  
-
-- Products : Represent application list product (name , desc, price ...)
-
-  
-
-- Carts : Represent temp user list product (product_ids[] , date)
-
-  
-
-- Commands : Represent user list product validated before payment (Cart_id, date, status) status : (waiting_paid, paid, waiting_shipping, confirmed_shipping, shipping_finish, terminated)
-
-  
-
-- Payments : Represent a command payment (command_id, date, amount , provider (stripe, payplug), provider_extra_data ...)
-
-  
-
-- PaymentNotifications : Represent the Payment provider (stripe, payplug etc) payment notification response
-
-  
-
-- Shippings : Represent Command shipping (user_address, user_id, date_creation, date_estimated_shipping, command_id, date_finish)
-
-
-
-## Rest Resources Models:
-
-#### Users : auth, profile
+#### Users : auth, profile (username, email, password, address etc)
 
 ```mermaid
 classDiagram
 class User{
 
 +int id
-
 +String username
-
 +String email
-
 +String password
-
 +String address
 
-  
-
 +register()
-
 +login()
-
 +logout()
-
 +profile()
+
+}
+```
+
+
+#### Cities : Represent application list cities deserved to shipping (name, coords, ...)
+
+```mermaid
+classDiagram
+class Citie{
+
++int id
+
+}
+```
+
+
+#### Products : Represent application list product (name , desc, price ...)
+```mermaid
+classDiagram
+class Product{
+
++int id
++int cart_id
++String name
++Int price
 
 }
 ```
@@ -78,54 +61,52 @@ class Cart{
 
 }
 ```
-  
-```mermaid
-classDiagram
-class Product{
 
-+int id
 
-+int cart_id
+#### Commands : Represent user list product validated before payment (Cart_id, date, status) status : (waiting_paid, paid, waiting_shipping, confirmed_shipping, shipping_finish, terminated)
 
-+String name
-
-+Int price
-
-}
-```
-  
 ```mermaid
 classDiagram
 class Command{
 
 +int id
-
 +int cart_id
 
 }
 ```
-  
+
+#### Payments : Represent a command payment (command_id, date, amount , provider (stripe, payplug), provider_extra_data ...)
+
 ```mermaid
 classDiagram
 class Payment{
 
 +int id
-
 +int command_id
 
 }
 ```
   
   
-  
+#### PaymentNotifications : Represent the Payment provider (stripe, payplug etc) payment notification response
   
 ```mermaid
 classDiagram
 class PaymentNotification{
 
 +int id
-
 +int payment_id
+
+}
+```
+
+#### Shippings : Represent Command shipping (user_address, user_id, date_creation, date_estimated_shipping, command_id, date_finish)
+
+```mermaid
+classDiagram
+class Shipping{
+
++int id
 
 }
 ```
@@ -147,12 +128,12 @@ class PaymentNotification{
 
 > Cities - Products - Carts - Commands - Payments - PaymentNotifications - Shippings
 
-#### **Api User** :
+#### **Api resource User** :
 
 > register() - login() - logout() - profile()
 
 
-#### **Api Payment** :
+#### **Api resource Payment** :
 
 > initPayment() - finalizePayment() - 3DS() - confirmPaymentNotification() (IPN) - confirmPayment()
 
