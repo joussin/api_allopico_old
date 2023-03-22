@@ -72,9 +72,9 @@ erDiagram
 	}
     
     Command {
-	     string id OO "KO"
-	     string cart_id KK "KO"
-	string status OK "KO"
+	     int id
+	     int cart_id
+	enum status
 	datetime date
 	}
     
@@ -100,6 +100,10 @@ erDiagram
 	     datetime date_creation
 	     datetime date_estimated_delivery
 	     datetime date_finish
+	}
+	
+	   CommandTest {
+	     string desc "OK" "KO"
 	}
 ```  
 
