@@ -113,15 +113,14 @@ erDiagram
      PERSON-TEST {
         string driversLicense PK, FK "The license #"
         string(99) firstName "Only 99 characters are allowed"
-        string lastName
-        string phone UK
-        int age
+            int id
+	     int command_id  
+		 datetime date
+		 enum status  
+		 enum provider   
+		 json provider_extra_data
     }
-    
-    NAMED-DRIVER {
-        string carRegistrationNumber PK, FK
-        string driverLicence PK, FK
-    }
+  
 ```  
 
 
