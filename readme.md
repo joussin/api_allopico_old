@@ -43,14 +43,16 @@ erDiagram
     City {
         int id
         string name
-        float[] coords "[lat: 48.862725, long: 2.287592]"
+	float lat "48.862725"
+	float long "2.287592"
 	string lat_long "48.862725,2.287592"
     }
         
     UserLocation {
         int id
         int user_id
-        float[] coords "[lat: 48.862725, long: 2.287592]"
+	float lat "48.862725"
+	float long "2.287592"
 	string lat_long "48.862725,2.287592"
     }
     
