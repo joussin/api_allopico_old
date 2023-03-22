@@ -74,7 +74,7 @@ erDiagram
     Command {
 	     int id
 	     int cart_id  
-		 enum status WAITING_PAID, PAID, WAITING_DELIVERY, CONFIRMED_DELIVERY, DELIVERY_FINISH, TERMINATED
+		 enum status 
 		 datetime date
 	}
     
@@ -82,15 +82,15 @@ erDiagram
 	     int id
 	     int command_id  
 		 datetime date
-		 enum status  WAITING, FAILED, SUCCESS
-		 enum provider  STRIPE, PAYPLUG
+		 enum status  
+		 enum provider   
 		 json provider_extra_data
 	}
     
     PaymentNotification {
 	     int id
 	     int payment_id
-		 enum status  WAITING, FAILED, SUCCESS
+		 enum status  
 	}
 	    
     Delivery {
