@@ -6,76 +6,111 @@
 ## Rest Resources :
 
 #### User : auth, profile (username, email, password, address etc)
-#### City : Represent application list cities deserved to shipping (name, coords, ...)
 
-```mermaid  
-erDiagram  
+```mermaid
+classDiagram
+class User{
 
-    User {
-        string id
-        string username
-    }
-    
-    City {
-        string id
-    }
-    
++int id
++String username
++String email
++String password
++String address
+
++register()
++login()
++logout()
++profile()
+
+}
 ```
 
----
+
+#### City : Represent application list cities deserved to shipping (name, coords, ...)
+
+```mermaid
+classDiagram
+class City{
+
++int id
+
+}
+```
+
 
 #### Product : Represent application list product (name , desc, price ...)
+```mermaid
+classDiagram
+class Product{
+
++int id
++int cart_id
++String name
++Int price
+
+}
+```
+
 #### Cart : Represent temp user list product (product_ids[] , date)
+
+```mermaid
+classDiagram
+class Cart{
+
++int id
+
+}
+```
+
+
 #### Command : Represent user list product validated before payment (Cart_id, date, status) status : (waiting_paid, paid, waiting_shipping, confirmed_shipping, shipping_finish, terminated)
+
+```mermaid
+classDiagram
+class Command{
+
++int id
++int cart_id
++string status
+
+}
+```
+
 #### Payment : Represent a command payment (command_id, date, amount , provider (stripe, payplug), provider_extra_data ...)
+
+```mermaid
+classDiagram
+class Payment{
+
++int id
++int command_id
++string status
+}
+```
+  
+  
 #### PaymentNotification : Represent the Payment provider (stripe, payplug etc) payment notification response
+  
+```mermaid
+classDiagram
+class PaymentNotification{
+
++int id
++int payment_id
+
+}
+```
+
 #### Shipping : Represent Command shipping (user_address, user_id, date_creation, date_estimated_shipping, command_id, date_finish)
 
+```mermaid
+classDiagram
+class Shipping{
 
-```mermaid  
-erDiagram
-    Cart ||--o{ Product : hasMany
-    Cart ||--o{ Command : hasOne
-    Cart ||--o{ Payment : hasOne
-    Payment ||--o{ PaymentNotification : hasOne
-    Command ||--o{ Shipping : hasOne
-    
-    Product {
-		int id  
-		int cart_id  
-		String name  
-		Int price  
-	}
-    
-    Cart {
-	     string id
-	}
-    
-    Command {
-	     int id
-	     int cart_id  
-		string status
-	}
-    
-    Payment {
-	     int id
-	     int command_id  
-		string status
-	}
-    
-    PaymentNotification {
-	     int id
-	     int payment_id
-	}
-	    
-    Shipping {
-	     int id
-	     string status
-	}
-```  
-
-
-
++int id
++string status
+}
+```
 
 ## Liste des servcies:
 
