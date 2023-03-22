@@ -76,23 +76,24 @@ erDiagram
     Command {
 	     int id
 	     int cart_id
-	enum status
+	enum status "WAITING_PAID, PAID, WAITING_DELIVERY, CONFIRMED_DELIVERY, DELIVERY_FINISH, TERMINATED"
 	datetime date
 	}
     
-    Payment__ {
-	     int id
+     
+     Payment {
+            int id
 	     int command_id  
 		 datetime date
-		 enum status  
+		 enum status "WAITING, FAILED, SUCCESS"
 		 enum provider   
 		 json provider_extra_data
-	}
+    }
     
     PaymentNotification {
 	     int id
 	     int payment_id
-		 enum status  
+		 enum status  "WAITING, FAILED, SUCCESS"
 	}
 	    
     Delivery {
@@ -105,17 +106,7 @@ erDiagram
 	}
 	
  
-    
-     Payment {
-        string ex1 PK, FK "The license #"
-        string(99) ex2 "Only 99 characters are allowed"
-            int id
-	     int command_id  
-		 datetime date
-		 enum status "WAITING_PAID, PAID, WAITING_DELIVERY, CONFIRMED_DELIVERY, DELIVERY_FINISH, TERMINATED"
-		 enum provider   
-		 json provider_extra_data
-    }
+
   
 ```  
 
