@@ -40,13 +40,13 @@ erDiagram
     City {
         int id
         string name
-        float[] coords
+        float coords
     }
         
     UserLocation {
         int id
         int user_id
-        float[] coords
+        float coords
     }
     
     User {
