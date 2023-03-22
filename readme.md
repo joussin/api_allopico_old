@@ -37,8 +37,7 @@ erDiagram
     
     Payment ||--o{ PaymentNotification : hasOne
     
-    Command ||--o{ Person : has
-        Person ||--o{ PaymentNotification : hasOne
+   
     
     City {
         int id
@@ -81,7 +80,7 @@ erDiagram
 	datetime date
 	}
     
-    Payment {
+    Payment__ {
 	     int id
 	     int command_id  
 		 datetime date
@@ -107,7 +106,7 @@ erDiagram
 	
  
     
-     Person {
+     Payment {
         string ex1 PK, FK "The license #"
         string(99) ex2 "Only 99 characters are allowed"
             int id
