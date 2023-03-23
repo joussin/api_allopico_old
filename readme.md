@@ -189,6 +189,8 @@ User->>+Location: Set my Location
 
 Location->>-Address: Set my address from location
 
+Address->>-User: Show address
+
 ClientApplication->>+City: check my location availability
 
 User->>+Product: list all Products
