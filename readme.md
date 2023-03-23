@@ -187,9 +187,13 @@ ClientApplication->>+User: Login/Register
 
 User->>+Location: Set my Location
 
-Location->>+Address: Set my address from location
+Location->>-Address: Set my address from location
+
+Address->>-ClientApplication: Show address
 
 ClientApplication->>+City: check my location availability
+
+
 
 User->>+Product: list all Products
 
