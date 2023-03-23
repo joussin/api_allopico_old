@@ -1,13 +1,12 @@
-
-  
-
 # Documentation Api-Allopico
 
-## Rest Resources :
+# DATABASE
 
-**City** : Represent la liste des villes déservies.  
+## Rest Resources / DB models :
 
-**User** : User auth, profile 
+**City** : Represent la liste des villes déservies.
+
+**User** : User auth, profile
 
 **Location** : Represent a gps location. Obtenu grâce au gps du tel. Le user possède une collection de Location.
 
@@ -23,7 +22,8 @@
 
 **PaymentNotification** : Represent the Payment provider notification
 
-**Delivery** : Represent Command Delivery 
+**Delivery** : Represent Command Delivery
+
 
 
 ```mermaid  
@@ -130,12 +130,11 @@ erDiagram
   
 ```  
 
+---
 
+# Api REST 
 
-
-## Liste des servcies:
-
-### Api REST api-allopico:
+## api-allopico:
 
 - host: 0.0.0.0:8000
 
@@ -146,35 +145,88 @@ erDiagram
   - dev: dev_api_allopico
 
 
-#### **Api crud des resources suivantes** : 
-
-> City - Address - Location - Product - Cart - Command - Payment - PaymentNotification - Delivery
-
-> list - create - show - update - delete - listFiltered
-
-#### **Api Geo (avec api google map & api IGN : https://geoservices.ign.fr/documentation/services/api-et-services-ogc) : Location - City - Address** :
-
-> lat_long_to_address() - lat_long_to_city() - address_to_city() - city_to_lat_long()
-
-> address_to_lat_long() - city_to_address() - address_full_to_address_object() - address_object_to_address_full() 
-
 
 #### **Api resource User** :
 
-> register() - login() - logout() - profile()
+> POST /user/register()
+> POST /user/login()
+> GET/user/logout()
+
+> GET /user/profile()
+> PUT /user/profile()
 
 
-#### **Api resource Payment** :
+#### **Crud sur les resources suivantes** :
+
+> Resources:
+
+  -  Product 
+  -  Cart 
+  -  Command 
+  -  Delivery
+
+> GET /resource/list 
+> POST /resource/create 
+> GET /resource/show 
+> PUT /resource/update 
+> DELETE /resource/delete 
+> GET /resource/listFiltered
+
+#### **Api Geo : Location - City - Address** :
+
+api google map
+api IGN : https://geoservices.ign.fr/documentation/services/api-et-services-ogc
+
+
+CRUD:
+
+> GET User Location collection
+> POST add Location to User 
+> GET Location
+> GET Location/all
+> POST Location
+
+
+> GET User Address collection
+> POST add Address to User
+> GET Address
+> GET Address/all
+> POST Address
+
+> GET City
+> GET City/all
+> POST City
+
+
+AUTRES ENDPOINTS:
+
+> GET /GEO/lat_long_to_address()
+> GET /GEO/lat_long_to_city()
+> GET /GEO/address_to_city()
+> GET /GEO/city_to_lat_long()
+> GET /GEO/address_to_lat_long()
+> GET /GEO/city_to_address() 
+> GET /GEO/address_full_to_address_object() 
+> GET /GEO/address_object_to_address_full()
+
+
+
+#### **Api resources : Payment - PaymentNotification** :
 
 > initPayment() - finalizePayment() - 3DS() - confirmPaymentNotification() (IPN) - confirmPayment()
 
-  
 
-# Schema diagram : User side
 
-ClientApplication : user app / public app
+---
 
-User : ClientApplication user
+# Application Flows 
+
+
+# Diagram Flows : User side
+
+ClientApplication : public Customer application
+
+User : Customer
 
 ### Flow Register/login, Gps location, list Products
 
@@ -256,27 +308,24 @@ Command->>-ClientApplication: Show Command as TERMINATED
 
 ```
 
+# Diagram Flows : DeliveryUser side
 
-# Schema diagram : Admin side
+DeliveryApplication : private livreur application
 
-AdminApplication : livreur app / private app
-
-Admin : AdminApplication user / livreur
+DeliveryUser : livreur
 
 
 ### Flow Command
 ```mermaid
 sequenceDiagram
 
-Admin->>+Command: List command to Delivery
+DeliveryUser->>+Command: List command to Delivery
 
-Admin->>+Delivery: get Command address
+DeliveryUser->>+Delivery: get Command address
 
-Admin->>+Command: validate Command Delivery (Command status CONFIRMED_DELIVERY)
+DeliveryUser->>+Command: validate Command Delivery (Command status CONFIRMED_DELIVERY)
 
-Admin->>+Delivery: Delivery date_estimated_delivery = now + 30min
-
-
+DeliveryUser->>+Delivery: Delivery date_estimated_delivery = now + 30min
 ```
 
 
@@ -284,11 +333,20 @@ Admin->>+Delivery: Delivery date_estimated_delivery = now + 30min
 ```mermaid
 sequenceDiagram
 
-Admin->>+AdminApplication: Livreur starting Delivery. DeliveryUser->addLocation()
+DeliveryUser->>+DeliveryApplication: Livreur starting Delivery. DeliveryUser->addLocation()
 
-AdminApplication->>+Delivery: Delivery date_finish=now
+DeliveryApplication->>+Delivery: Delivery date_finish=now
 
-AdminApplication->>+Command: Command DELIVERY_FINISH
+DeliveryApplication->>+Command: Command DELIVERY_FINISH
 
 ```
+
+
+
+# Diagram Flows : Admin side
+
+AdminApplication : private Admin application
+
+AdminUser : Admin de l'app
+
 
