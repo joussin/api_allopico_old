@@ -1,0 +1,108 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Swagger api_allopico",
+        "description": "<b>api_allopico</b> <br><br> Documentation complète du projet : <a href='/api/docs/files/readme.md.html' target='_blank'>Documentation</a>",
+        "termsOfService": "https://github.com/joussin/api_allopico",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://github.com/joussin/api_allopico"
+        },
+        "version": "1.0.17"
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "https://github.com/joussin/api_allopico"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8099/api"
+
+        }
+    ],
+    "tags": [
+        {
+            "name": "Route",
+            "description": "Route",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        }
+    ],
+
+    "security": [
+        {
+            "OAuth2": [
+
+            ]
+        }
+    ],
+
+    "paths": {
+
+
+    },
+    "components": {
+        "schemas": {
+
+            "Template": {
+                "type": "object",
+                "properties": {
+
+                    "blade_name": {
+                        "type": "string",
+                        "example": "simple-blade-template"
+                    }
+
+
+                }
+            }
+        },
+
+        "securitySchemes": {
+            "OAuth2": {
+                "type": "oauth2",
+                "description": "<u>Dev oauth creds</u>  <br><br> CGM :  <br><br> 98a7a345-3df2-484b-1111-efb0113bcc36 <br><br> UGvmn57lVIlHzS5HKQ26Ia7RmVz8ivm7ucZ8lYbD <br><br>  CGO :  <br><br> 98a7a345-3df2-484b-2222-efb0113bcc36 <br><br>  UGvmn57lVIlHzS5HKQ26Ia7RmVz8ivm7ucZ8lYbD  <br><br> <br><br> ",
+                "flows": {
+                    "clientCredentials": {
+                        "authorizationUrl": "http://51.38.187.172:9999/oauth/authorize",
+                        "tokenUrl": "http://51.38.187.172:9999/oauth/token",
+                        "scopes": {
+                            "route:viewAny": "Grants route read access",
+                            "route:view": "Grants route read access",
+                            "route:create": "Grants route create access",
+                            "route:update": "Grants route edit access",
+                            "route:delete": "Grants route delete access",
+
+                            "page:viewAny": "Grants page read access",
+                            "page:view": "Grants page read access",
+                            "page:create": "Grants page create access",
+                            "page:update": "Grants page edit access",
+                            "page:delete": "Grants page delete access",
+
+                            "page_content:viewAny": "Grants page_content read access",
+                            "page_content:view": "Grants page_content read access",
+                            "page_content:create": "Grants page_content create access",
+                            "page_content:update": "Grants page_content edit access",
+                            "page_content:delete": "Grants page_content delete access",
+
+                            "template:viewAny": "Grants template read access",
+                            "template:view": "Grants template read access",
+                            "template:create": "Grants template create access",
+                            "template:update": "Grants template edit access",
+                            "template:delete": "Grants template delete access"
+
+
+
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
