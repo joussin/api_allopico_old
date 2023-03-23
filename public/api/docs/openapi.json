@@ -2,8 +2,8 @@
     "openapi": "3.0.2",
     "info": {
         "title": "Swagger api_allopico",
-        "description": "<b>api_allopico</b> <br><br> Documentation complète du projet : <a href='/api/docs/files/readme.md.html' target='_blank'>Documentation</a>",
-        "termsOfService": "https://github.com/joussin/api_allopico",
+        "description": "<b>api_allopico</b><br><br> Documentation : <a href='https://github.com/joussin/api_allopico/blob/main/readme.md' target='_blank'>Documentation</a><br><br>",
+        "termsOfService": "",
         "contact": {
             "email": "apiteam@swagger.io"
         },
@@ -11,26 +11,22 @@
             "name": "Apache 2.0",
             "url": "https://github.com/joussin/api_allopico"
         },
-        "version": "1.0.17"
+        "version": "1.0.0"
     },
     "externalDocs": {
-        "description": "Find out more about Swagger",
+        "description": "Repository github",
         "url": "https://github.com/joussin/api_allopico"
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8099/api"
+            "url": "http://127.0.0.1:3333/api"
 
         }
     ],
     "tags": [
         {
-            "name": "Route",
-            "description": "Route",
-            "externalDocs": {
-                "description": "Find out more",
-                "url": "http://swagger.io"
-            }
+            "name": "Product",
+            "description": "Product"
         }
     ],
 
@@ -44,12 +40,42 @@
 
     "paths": {
 
-
+        "/product" : {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Find all Products",
+                "description": "Returns all Products",
+                "operationId": "getProductAll",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        }
     },
     "components": {
         "schemas": {
 
-            "Template": {
+            "Product": {
                 "type": "object",
                 "properties": {
 
