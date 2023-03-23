@@ -1,5 +1,19 @@
 # Documentation Api-Allopico
 
+# Stack
+
+Auth: laravel
+payment: payPlug
+Api Rest: laravel
+db: mysql
+Hébergement: ma droplet digital ocean
+
+App Android: flutter
+
+api google map
+api IGN : https://geoservices.ign.fr/documentation/services/api-et-services-ogc
+
+
 # Documentation tools
 
 https://stackedit.io/app#
