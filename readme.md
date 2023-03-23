@@ -183,17 +183,23 @@ User : ClientApplication user
 ```mermaid
 sequenceDiagram
 
+
 ClientApplication->>+User: Login/Register
 
-User->>+Location: Set my Location
+User->>-ClientApplication: logged
+
+activate Location
+ClientApplication->>+Location: Set my Location
+
 
 Location->>-Address: Set my address from location
 
-Address->>+ClientApplication: Show address
+activate Address
+Address-->>-ClientApplication: get address
 
 ClientApplication->>+City: check my location availability
 
-City->>-ClientApplication: message error if location unavailability
+City-->>-ClientApplication: message error if location unavailability
 
 ClientApplication->>+Product: list all Products
 
