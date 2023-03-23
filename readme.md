@@ -193,7 +193,7 @@ ClientApplication->>+City: check my location availability
 
 User->>+Product: list all Products
 
-Product->>+User: Product[]
+Product->>-User: Product[]
 ```
 
   
