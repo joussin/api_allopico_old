@@ -195,9 +195,9 @@ ClientApplication->>+City: check my location availability
 
 City->>-ClientApplication: message error if location unavailability
 
-User->>+Product: list all Products
+ClientApplication->>+Product: list all Products
 
-Product->>-User: Product[]
+Product->>-ClientApplication: Product[]
 ```
 
   
