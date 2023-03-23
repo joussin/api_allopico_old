@@ -239,24 +239,20 @@ User->>+Payment: Confirm payment in DB (confirmPayment)
 
 ```mermaid
 sequenceDiagram
-
   
+ClientApplication->>+Delivery: Check Delivery date_estimated_delivery
 
-User->>+Command: Check Commands status
+Delivery->>-ClientApplication: show date_estimated_delivery
 
-  
 
-User->>+Delivery: Check Delivery date_estimated_delivery
+ClientApplication->>+DeliveryUser: Get Delivery man (User) Location
 
-  
+DeliveryUser->>-ClientApplication: show Location
 
-User->>+Command: Commands status
 
-  
+User->>+Command: User validate Delivery (Command status TERMINATED)
 
-User->>+Command: User validate Delivery (Command terminated)
-
-  
+Command->>-ClientApplication: Show Command as TERMINATED
 
 ```
 
@@ -272,23 +268,14 @@ Admin : AdminApplication user / livreur
 ```mermaid
 sequenceDiagram
 
-  
-
-Admin->>+Command: List command to ship
-
-  
+Admin->>+Command: List command to Delivery
 
 Admin->>+Delivery: get Command address
 
-  
-
-Admin->>+Command: validate Command Delivery (Command confirmed_delivery)
-
-  
+Admin->>+Command: validate Command Delivery (Command status CONFIRMED_DELIVERY)
 
 Admin->>+Delivery: Delivery date_estimated_delivery = now + 30min
 
-  
 
 ```
 
@@ -297,19 +284,11 @@ Admin->>+Delivery: Delivery date_estimated_delivery = now + 30min
 ```mermaid
 sequenceDiagram
 
-  
-
-Admin->>+AdminApplication: Livreur validate ship.
-
-  
+Admin->>+AdminApplication: Livreur starting Delivery. DeliveryUser->addLocation()
 
 AdminApplication->>+Delivery: Delivery date_finish=now
 
-  
-
-AdminApplication->>+Command: Command delivery_finish
-
-  
+AdminApplication->>+Command: Command DELIVERY_FINISH
 
 ```
 
