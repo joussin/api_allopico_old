@@ -2,25 +2,34 @@
 
 # Stack
 
+Domain: http://jouss.in/
+
 Auth: laravel
+
 payment: payPlug
+
 Api Rest: laravel
+
 db: mysql
+
 Hébergement: ma droplet digital ocean
 
 App Android: flutter
 
 api google map
+
 api IGN : https://geoservices.ign.fr/documentation/services/api-et-services-ogc
 
 
 # Documentation tools
 
 https://stackedit.io/app#
-https://mermaid.live/
-https://app.diagrams.net/
-https://kroki.io/examples.html
 
+https://mermaid.live/
+
+https://app.diagrams.net/
+
+https://kroki.io/examples.html
 
 https://kroki.io/mermaid/svg/eNq1VV1vokAUfcZfccMzNoh17fJGBFtSvyK4mz6RiYztbPgwA3bbaP_7XoYvAWv7skQnw_XM3HPOvTNSbjLyzEnYA3w2CeVwOvX7pyPM4i1JWRyBDi8kmZPoXUCqsICdwPB9TpMkRy0j2tlnQnja2kMMIl5gVjz2D9s2rEacYBKHIYn8ZpocVfxSAFfkPaRR2gS2MCYN2Cvl71dBE5ZeB1xULoaSQ5PSIk7Zjp2b2lhUkSo8ER5WsBqXU8nIHcU0exgmYz6sHqtIknIWPUNEQtqTdkFMUgjwK9_e3dz90MbaSK7CMeJk7Ua7G49-ahguliLcy3-r1ig1KsvxUWVrdsY1XlnkgMo8DMuTQ5LGIcrEl5iDXzqALmNIrrf_bwoaAsRQVvUrEUGhNhMyfexJZ6bvDkHgkWIfeaDC-kBRHPLBVmBvCoxHqqrhnLPk3Mn66HyjspmJorqtOA0JC9rBPUmSvzH32_GCZBWm0SEEHgcUa7Nx3OXcWitgWjP7l7V-UsAw5_aiwzhv-eIEH3uSVHHOKifetniSS6Mkp25NAbARsOdsK94-WhfEMXf2zAep00el_eCTlKYMt80m2BGqNuyrw742goGmD1VdVRV4wqc_n_dNEx50pmMBGjmLI34t7bkYYViSkvSAlf5t2K69uPdWhm0qkI9lrDZxslxM7fXcMs9i5cyb2gvbeVDAtdZoteFaJvL7WlZTRDGWt1DdTJ8qylXnorKSwLdSSnBJvgJD01FgatgzCw1wNpOJ5Tg1fM_jV-Zjk8uOu7ZXVubU02q2uc8nxkxA_yR4kZRQj76lnHjIhYB8zHp3T5GsDgMFireiF0Qo46wDctb66gA_SMI13I2jw_Lxo9O-l27na-Xf5_iqnRsmgNzSLdwQ5ZG6N_3VLjuvycWmB7lzYUrFddk9Dd6W01zbJ8W8sIQmOMeJ71WJWotvR58u3rGIJS-dBeOyW6UeZH9q_wBP3UyH
 
@@ -166,9 +175,11 @@ erDiagram
 
 ## api-allopico:
 
-- host: 0.0.0.0:8000
+- host: 0.0.0.0:3333
+- Domain: jouss.in
 
-- Swagger: http://0.0.0.0:8000/api/docs/index.html
+- Swagger: http://0.0.0.0:3333/api/docs/index.html
+- Swagger: http://jouss.in/api/docs/index.html
 
 - bdd:
 
